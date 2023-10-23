@@ -28,6 +28,7 @@ articleSelectCatHtml.addEventListener('change', () => {
 
 });
 
+
 // CODE POUR AJOUTER UN ARTICLE //
 // Récupère le boutons d'ajout d'article HTML //
 const articleAddBtnHtml = document.getElementById('articleAddBtn');
