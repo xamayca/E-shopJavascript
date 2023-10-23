@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+</head>
+
+<body class="bg-body">
+
+    <h1 class="txt-white txt-center p-1 fs-1">E-shop Javascript (mobile first)</h1>
+
+    <div class="d-flex flex-col justify-around items-center bg-dark">
+        <h2 class="txt-white txt-up fs-1">Add an article to your shop</h2>
+
+        <div class="d-flex flex-col justify-around bg-dark p-1 gap-2">
+
+            <input type="text" id="articleName" name="articleName" placeholder="Title for the article"
+                class="p-1 fw-bold">
+
+            <select id="articleSelectCat" name="articleSelectCat" class="p-1 fw-bold">
+                <option value="" selected disabled>--Please choose a category for this item--</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+                <option value="enfants">Enfants</option>
+            </select>
+
+            <button id="articleAddBtn" type="submit"
+                class="d-flex items-center justify-center gap-1 txt-up fw-bold txt-white p-07 bg-light">
+                Ajouter l'article a vendre
+                <img src="assets/img/valid-ico.svg" alt="">
+            </button>
+
+        </div>
+
+    </div>
+    <main class="d-flex flex-col items-center">
+        <h3 class="txt-white fw-bold bg-light p-1">Liste des articles a vendre</h3>
+        <div id="articleList" class="d-flex flex-col items-center gap-1 w-100">
+        </div>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
