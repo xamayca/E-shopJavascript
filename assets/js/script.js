@@ -13,39 +13,47 @@ articleNameHtml.addEventListener('input', () => {
     console.log(`Article name is: ${articleName}`);
 });
 
-
+// CODE POUR RÉCUPÉRER LA SELECTION DU MENU DÉROULANT //
 // Déclaration pour utilisation externe a l'addEventListener //
 let catName;
 // Récupère le sélecteur de categories HTML //
 const articleSelectCatHtml = document.getElementById('articleSelectCat');
 articleSelectCatHtml.addEventListener('change', () => {
 
+    console.log(`Category select is: ${catName}`);
+
     // Important //
     //Renvois le texte Html de l'option sélectionnée dans select menu //
     catName = articleSelectCatHtml.options[articleSelectCatHtml.selectedIndex].text;
 
-    console.log(`Category select is: ${catName}`);
 });
 
-
+// CODE POUR AJOUTER UN ARTICLE //
+// Récupère le boutons d'ajout d'article HTML //
 const articleAddBtnHtml = document.getElementById('articleAddBtn');
 articleAddBtnHtml.addEventListener('click', () => {
-    article.unshift({ title: articleName, category: catName });
 
     console.log('Add button is clicked');
     console.log(article);
 
+    // Ajoute au tableau article le titre récupérer et la categories sélectionné //
+    article.unshift({ title: articleName, category: catName });
+
+    // Appel de la fonction display//
     displayArticle();
+
 });
 
-
+// Récupère la div ou irons les articles //
 const articleListHtml = document.getElementById('articleList');
-articleListHtml.classList.add('gap-1');
 
+// CODE POUR L'AFFICHAGE DES ARTICLES //
+// Fonction pour afficher les articles (displayArticle)) //
 const displayArticle = () => {
 
     console.log(`Article Name is: ${article[0].title}`);
     console.log(`Article Category is: ${article[0].category}`);
+
 
     //Crée les éléments HTML //
     //Crée une div //
@@ -65,13 +73,13 @@ const displayArticle = () => {
     newDiv.appendChild(newTitle);
     // Attache le span crée a la div crée (newDiv) //
     newDiv.appendChild(newSpan);
-
     // Ajoute les style de la fonction (addStyle) aux arguments newDiv et newSpan //
     addStyleToArticle(newDiv, newSpan);
+
 }
 
-
-// Fonction pour ajouter des styles a un article (addStyle) //
+// CODE POUR LE STYLE DES ARTICLES //
+// Fonction pour ajouter des styles a un article (addStyleToArticle) //
 const addStyleToArticle = (div, span) => {
     // Style des div crée //
     div.classList.add('d-flex');
