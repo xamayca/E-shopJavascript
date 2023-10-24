@@ -82,21 +82,23 @@ const displayArticle = () => {
 // CODE POUR LE STYLE DES ARTICLES //
 // Fonction pour ajouter des styles a un article (addStyleToArticle) //
 const addStyleToArticle = (div, span) => {
-    // Style des div crée //
+    // Style de la div crée //
+    // Display //
     div.classList.add('d-flex');
     div.classList.add('flex-col');
     div.classList.add('justify-between');
     div.classList.add('items-center');
-
+    // Text //
     div.classList.add('txt-white');
     div.classList.add('txt-center');
     div.classList.add('fw-bold');
-
+    // Size & color //
     div.classList.add('w-75');
     div.classList.add('p-05');
     div.classList.add('bg-light');
 
-    // Style des span crée //
+    // Style de la span crée //
+    // Size & color //
     span.classList.add('bg-dark');
     span.classList.add('p-05');
     span.classList.add('w-75');
