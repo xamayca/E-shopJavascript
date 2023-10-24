@@ -22,8 +22,8 @@ articleSelectCatHtml.addEventListener('change', () => {
 
     console.log(`Category select is: ${catName}`);
 
-    // Important //
-    //Renvois le texte Html de l'option sélectionnée dans select menu //
+    // /!\ Important /!\ //
+    //Renvois le texte contenu dans l'option sélectionnée du select menu //
     catName = articleSelectCatHtml.options[articleSelectCatHtml.selectedIndex].text;
 
 });
