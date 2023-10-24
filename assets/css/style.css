@@ -223,6 +223,9 @@ select {
 .h-50 {
     height: 50%;
 }
+.m-0{
+    margin:0;
+}
 
 .h-30 {
     height: 30%;
@@ -239,7 +242,9 @@ select {
 .h-5 {
     height: 5%;
 }
-
+.vh-5 {
+    height: 5vh;
+}
 .pr-15 {
     padding-left: 15%;
 }
@@ -444,8 +449,8 @@ button {
     background-color: rgb(24, 106, 145);
 }
 
-.bg-warn {
-    background-color: rgb(255, 200, 97);
+.txt-warn {
+    color: rgb(255, 200, 97);
 }
 
 /***** SCROLLBAR GENERAL *****/

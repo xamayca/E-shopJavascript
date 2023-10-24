@@ -8,48 +8,62 @@
     <title>Document</title>
 </head>
 
-<body class="bg-body">
+<body class="bg-body txt-center">
 
-    <h1 class="txt-white txt-center p-1 fs-1">E-shop Javascript (mobile first)</h1>
+    <h1 class="txt-white p-1 fs-1">E-shop Javascript (mobile first)</h1>
 
-    <div class="d-flex flex-col justify-around items-center bg-dark">
-        <h2 class="txt-white txt-up fs-1">Add an article to your shop</h2>
+    <section class="d-flex flex-col p-1 gap-1 bg-dark">
 
-        <div class="d-flex flex-col justify-around bg-dark p-1 gap-2">
+        <button class="d-flex items-center justify-center gap-1 p-1 bg-valid txt-up txt-white fw-bold">
+            View my shopping cart
+        </button>
 
-            <input type="text" id="articleName" name="articleName" placeholder="Title of the article"
-                class="p-1 fw-bold">
+        <input type="text" id="articleName" name="articleName" placeholder="Title of the article" class="fw-bold p-1">
 
-            <select id="articleSelectCat" name="articleSelectCat" class="p-1 fw-bold">
-                <option value="" selected disabled>--Please choose a category for this article--</option>
-                <option value="homme">Homme</option>
-                <option value="femme">Femme</option>
-                <option value="enfants">Enfants</option>
-            </select>
+        <select id="articleSelectCat" name="articleSelectCat" class="fw-bold w-100 p-1">
+            <option value="" selected disabled>Category for this article</option>
+            <option value="Man">Man</option>
+            <option value="Woman">Woman</option>
+            <option value="Children">Children</option>
+        </select>
 
-            <button id="articleAddBtn" type="submit"
-                class="d-flex items-center justify-center gap-1 txt-up fw-bold txt-white bg-light">
-                Ajouter l'article a vendre
-                <img src="assets/img/valid-ico.svg" alt="">
-            </button>
+        <button id="articleAddBtn" type="submit"
+            class="d-flex items-center justify-center gap-1 txt-up fw-bold txt-white bg-light p-1">
+            Ajouter l'article a vendre
+        </button>
+    </section>
 
-        </div>
-
+    <div class="vh-5 d-flex items-center justify-around">
+        <span id="error" class="txt-warn txt-up fs-05 txt-center"></span>
     </div>
-    <main class="d-flex flex-col items-center gap-2">
-        <h3 class="txt-white fw-bold bg-light p-05">Liste des articles a vendre</h3>
 
-        <div class="d-flex justify-around w-50 gap-3">
-            <button id="hommeFilterBtn" class="p-05 bg-dark txt-up txt-white fw-bold" type="button">homme</button>
-            <button id="femmeFilterBtn" class="p-05 bg-dark txt-up txt-white fw-bold" type="button">femme</button>
-            <button id="enfantFilterBtn" class="p-05 bg-dark txt-up txt-white fw-bold" type="button">enfant</button>
+    <section class="p-1 d-flex flex-col bg-dark gap-1">
+
+        <h3 class="txt-white fw-bold bg-light p-05 txt-up m-0">List of items for sale</h3>
+
+        <div class="d-flex flex-col gap-1">
+
+            <small class="txt-white">Filter the store by categories:</small>
+
+            <div class="d-flex justify-around gap-2">
+                <button id="manFilterBtn" class="p-05 bg-valid txt-up txt-white fw-bold w-30" type="button">Man</button>
+                <button id="womanFilterBtn" class="p-05 bg-valid txt-up txt-white fw-bold w-30"
+                    type="button">Woman</button>
+                <button id="childrenFilterBtn" class="p-05 bg-valid txt-up txt-white fw-bold w-30"
+                    type="button">Children</button>
+            </div>
+
         </div>
+        <div id="articleList" class="d-flex flex-col w-100 items-center gap-1"></div>
 
-        <div id="articleList" class="d-flex flex-col items-center gap-1 w-100">
-        </div>
-    </main>
+    </section>
 
-    <script src="assets/js/script.js"></script>
+
+
+
+
+    <script src=" assets/js/script.js">
+    </script>
 </body>
 
 </html>

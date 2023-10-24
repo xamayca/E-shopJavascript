@@ -1,93 +1,130 @@
 // Pour stocké les articles crée //
 let article = [];
 
-
+// Récupère le input du nom de l'article HTML //
 const articleNameHtml = document.getElementById('articleName');
-
-
-// CODE POUR RÉCUPÉRER LA SELECTION DU MENU DÉROULANT //
 // Récupère le sélecteur de categories HTML //
 const articleSelectCatHtml = document.getElementById('articleSelectCat');
-
-// CODE POUR AJOUTER UN ARTICLE //
+// Récupère la div ou irons les articles //
+const articleListHtml = document.getElementById('articleList');
 // Récupère le boutons d'ajout d'article HTML //
 const articleAddBtnHtml = document.getElementById('articleAddBtn');
+// Récupère le span pour les messages d'erreurs HTML //
+const errorHTML = document.getElementById('error');
+
+// Récupère les boutons de filtre par categories //
+const manFilterHTML = document.getElementById('manFilterBtn');
+manFilterHTML.addEventListener('click', () => displayArticle("Man"));
+const womanFilterHTML = document.getElementById('womanFilterBtn');
+womanFilterHTML.addEventListener('click', () => displayArticle("Woman"));
+const childrenFilterHTML = document.getElementById('childrenFilterBtn');
+childrenFilterHTML.addEventListener('click', () => displayArticle("Children"));
+
+// CODE POUR AJOUTER UN ARTICLE AU CLIC DU BOUTON//
 articleAddBtnHtml.addEventListener('click', () => {
 
     console.log('Add button is clicked');
     console.log(article);
 
-    const newArticle = article.filter(el => el.title == articleNameHtml.value);
-
-    if (newArticle.length == 0) {
-        // Ajoute au tableau article le titre récupérer et la categories sélectionné //
-        article.unshift({ title: articleNameHtml.value, category: articleSelectCatHtml.value });
+    // Définit find False par défaut //
+    let find = false;
+    // Crée une boucle pour connaître le nom de chaque articles et le comparé a la valeur de l'input //
+    for (let i = 0; i < article.length; i++) {
+        // Si un article a le meme nom que la valeur de notre nouvel article //
+        if (article[i].title == articleNameHtml.value && article[i].category == articleSelectCatHtml.value) {
+            // Dans ce cas définit find True et arrête la boucle //
+            errorHTML.textContent = "Article with same name & category already exist";
+            find = true;
+            break;
+        }
     }
-    // Appel de la fonction display//
+
+    // Et si aucun titre n'est tapé, renvoyé une erreur //
+    if (articleNameHtml.value.length == 0) {
+        errorHTML.textContent = "You need to add a title for your article";
+        // Et si aucune category n'est choisi, renvoyé une erreur //
+    } else if (articleSelectCatHtml.value.length == 0) {
+        errorHTML.textContent = "You need to select category for your article";
+        // Et si aucun article trouvé à le même nom Find est false donc ajoute les elements au tableau //
+    } else if (find == false) {
+        errorHTML.textContent = "";
+        // Ajoute un article dans le tableau (en premier) avec title et category //
+        article.unshift({ title: articleNameHtml.value, category: articleSelectCatHtml.value, quantity: 0 });
+    }
+    // Appel de la fonction display //
     displayArticle();
 
 });
 
-// Récupère la div ou irons les articles //
-const articleListHtml = document.getElementById('articleList');
 
 // CODE POUR L'AFFICHAGE DES ARTICLES //
 // Fonction pour afficher les articles (displayArticle)) //
-const displayArticle = () => {
+const displayArticle = (filter) => {
 
     // /!\ IMPORTANT: VIDE LA LISTE D'ARTICLE HTML /!\ //
     articleListHtml.innerHTML = '';
 
-    console.log(`Article Name is: ${article[0].title}`);
-    console.log(`Article Category is: ${article[0].category}`);
-
+    // Crée une boucle pour récupérer le nom des articles //
     for (let i = 0; i < article.length; i++) {
-        //Crée les éléments HTML //
-        //Crée une div //
-        const articleDiv = document.createElement("div");
+        if (article[i].category.includes(filter) || article[i].category.includes(filter) || filter == undefined || filter == '') {
 
-        //Crée un h2 avec le texteContent du nom de l'article //
-        const articleTitle = document.createElement("h2");
-        articleTitle.textContent = `Article: ${article[i].title}`;
+            // Crée les div et ajoute leur texte //
+            const articleDiv = document.createElement("div");
+            const articleTitle = document.createElement("h2");
+            articleTitle.textContent = `Article: ${article[i].title}`;
+            const articleSpan = document.createElement("span");
+            articleSpan.textContent = `Catégorie: ${article[i].category}`;
+            const articleCountDiv = document.createElement('div');
 
-        //Crée une span avec le texteContent de la catégorie de l'article //
-        const articleSpan = document.createElement("span");
-        articleSpan.textContent = `Catégorie: ${article[i].category}`;
+            // Ajoute le bouton + //
+            const articleAdd = document.createElement('button');
+            const iconButtonAdd = document.createElement('img');
+            iconButtonAdd.setAttribute('src', 'assets/img/add-ico.svg');
+            articleAdd.appendChild(iconButtonAdd);
+            // Écoute l’événement clic sur le bouton + pour ajouter //
+            articleAdd.addEventListener('click', function () {
+                article[i].quantity++
+                displayArticle();
+            });
 
-        // Attache le h2 crée a la div crée (newDiv) //
-        articleDiv.appendChild(articleTitle);
-        // Attache le span crée a la div crée (newDiv) //
-        articleDiv.appendChild(articleSpan);
-        // Ajoute les style de la fonction (addStyle) aux arguments newDiv et newSpan //
-        addStyleToArticle(articleDiv, articleSpan);
-        // Attache la div crée a la div HTML id: articleList //
-        articleListHtml.appendChild(articleDiv);
+            // Ajoute le résultat entre les boutons //
+            const howManyArticle = document.createElement('div');
+            howManyArticle.textContent = article[i].quantity;
+
+            // Ajoute le bouton - //
+            const articleRemove = document.createElement('button');
+            const iconButtonRemove = document.createElement('img');
+            iconButtonRemove.setAttribute('src', 'assets/img/remove-ico.svg');
+            articleRemove.appendChild(iconButtonRemove);
+            // Écoute l’événement clic sur le bouton - pour retirer //
+            articleRemove.addEventListener('click', function () {
+                if (article[i].quantity != 0) {
+                    article[i].quantity--;
+                    displayArticle();
+                }
+            });
+
+            // Attache les éléments les uns au autres //
+            articleDiv.appendChild(articleTitle);
+            articleDiv.appendChild(articleSpan);
+            articleListHtml.appendChild(articleDiv);
+            articleDiv.appendChild(articleCountDiv);
+            articleCountDiv.appendChild(articleAdd);
+            articleCountDiv.appendChild(howManyArticle);
+            articleCountDiv.appendChild(articleRemove);
+            addStyleToArticle(articleDiv, articleSpan, articleCountDiv);
+        }
     }
-
-
 }
 
 // CODE POUR LE STYLE DES ARTICLES //
 // Fonction pour ajouter des styles a un article (addStyleToArticle) //
-const addStyleToArticle = (div, span) => {
+const addStyleToArticle = (div, span, count) => {
     // Style de la div crée //
-    // Display //
-    div.classList.add('d-flex');
-    div.classList.add('flex-col');
-    div.classList.add('justify-between');
-    div.classList.add('items-center');
-    // Text //
-    div.classList.add('txt-white');
-    div.classList.add('txt-center');
-    div.classList.add('fw-bold');
-    // Size & color //
-    div.classList.add('w-75');
-    div.classList.add('p-05');
-    div.classList.add('bg-light');
-
+    div.classList.add('d-flex', 'flex-col', 'items-center', 'txt-white', 'txt-center', 'fw-bold', 'w-90', 'p-05', 'bg-light');
     // Style de la span crée //
-    // Size & color //
-    span.classList.add('bg-dark');
-    span.classList.add('p-05');
-    span.classList.add('w-75');
+    span.classList.add('bg-dark', 'p-05', 'w-75');
+
+    count.classList.add('d-flex', 'gap-1', 'items-center', 'p-1', 'bg-light');
+
 }
