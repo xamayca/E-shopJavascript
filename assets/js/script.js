@@ -11,6 +11,8 @@ const articleListHtml = document.getElementById('articleList');
 const articleAddBtnHtml = document.getElementById('articleAddBtn');
 // Récupère le span pour les messages d'erreurs HTML //
 const errorHTML = document.getElementById('error');
+// Récupère l'url du input pour ajouter une image a un article //
+const articleImageHtml = document.getElementById('articleImage');
 
 // Récupère les boutons de filtre par categories //
 const manFilterHTML = document.getElementById('manFilterBtn');
@@ -46,11 +48,14 @@ articleAddBtnHtml.addEventListener('click', () => {
     } else if (articleSelectCatHtml.value.length == 0) {
         errorHTML.textContent = "You need to select category for your article";
         // Et si aucun article trouvé à le même nom Find est false donc ajoute les elements au tableau //
+    } else if (articleImageHtml.value == 0) {
+        errorHTML.textContent = "You need to add an image for your article";
     } else if (find == false) {
         errorHTML.textContent = "";
         // Ajoute un article dans le tableau (en premier) avec title et category //
         article.unshift({ title: articleNameHtml.value, category: articleSelectCatHtml.value, quantity: 0 });
     }
+
     // Appel de la fonction display //
     displayArticle();
 
@@ -68,11 +73,17 @@ const displayArticle = (filter) => {
     for (let i = 0; i < article.length; i++) {
         if (article[i].category.includes(filter) || article[i].category.includes(filter) || filter == undefined || filter == '') {
 
-            // Crée les div et ajoute leur texte //
+            // Crée la div article son titre et le texte du titre + la categories de l'article //
             const articleDiv = document.createElement("div");
             const articleTitle = document.createElement("h2");
             articleTitle.textContent = `Article: ${article[i].title}`;
             const articleSpan = document.createElement("span");
+
+            // Crée la div container de l'image + l'image et sa source //
+            const articleImgContainer = document.createElement("div");
+            const articleImg = document.createElement("img");
+            articleImg.src = articleImageHtml.value;
+
             articleSpan.textContent = `Catégorie: ${article[i].category}`;
             const articleCountDiv = document.createElement('div');
 
@@ -80,7 +91,6 @@ const displayArticle = (filter) => {
             const articleAdd = document.createElement('button');
             const iconButtonAdd = document.createElement('img');
             iconButtonAdd.setAttribute('src', 'assets/img/add-ico.svg');
-            articleAdd.appendChild(iconButtonAdd);
             // Écoute l’événement clic sur le bouton + pour ajouter //
             articleAdd.addEventListener('click', function () {
                 article[i].quantity++
@@ -95,7 +105,6 @@ const displayArticle = (filter) => {
             const articleRemove = document.createElement('button');
             const iconButtonRemove = document.createElement('img');
             iconButtonRemove.setAttribute('src', 'assets/img/remove-ico.svg');
-            articleRemove.appendChild(iconButtonRemove);
             // Écoute l’événement clic sur le bouton - pour retirer //
             articleRemove.addEventListener('click', function () {
                 if (article[i].quantity != 0) {
@@ -104,27 +113,56 @@ const displayArticle = (filter) => {
                 }
             });
 
-            // Attache les éléments les uns au autres //
+            // Ajoute le bouton ajouter au panier //
+            const addToCartButton = document.createElement('button');
+            addToCartButton.textContent = "Add to cart";
+
+            // Attache les éléments les uns aux autres //
+            articleListHtml.appendChild(articleDiv);
+
+            // Titre et catégorie //
             articleDiv.appendChild(articleTitle);
             articleDiv.appendChild(articleSpan);
-            articleListHtml.appendChild(articleDiv);
+
+            // Image //
+            articleDiv.appendChild(articleImgContainer);
+            articleImgContainer.appendChild(articleImg);
+
+            // Div du compteur, des boutons + et - et leur svg //
             articleDiv.appendChild(articleCountDiv);
-            articleCountDiv.appendChild(articleAdd);
-            articleCountDiv.appendChild(howManyArticle);
+
             articleCountDiv.appendChild(articleRemove);
-            addStyleToArticle(articleDiv, articleSpan, articleCountDiv);
+            articleRemove.appendChild(iconButtonRemove);
+
+            articleCountDiv.appendChild(howManyArticle);
+
+            articleCountDiv.appendChild(articleAdd);
+            articleAdd.appendChild(iconButtonAdd);
+
+            articleDiv.appendChild(addToCartButton);
+
+            addStyleToArticle(articleDiv, articleTitle, articleImgContainer, articleImg, articleCountDiv, articleAdd, articleRemove, addToCartButton);
         }
     }
 }
 
 // CODE POUR LE STYLE DES ARTICLES //
 // Fonction pour ajouter des styles a un article (addStyleToArticle) //
-const addStyleToArticle = (div, span, count) => {
-    // Style de la div crée //
-    div.classList.add('d-flex', 'flex-col', 'items-center', 'txt-white', 'txt-center', 'fw-bold', 'w-90', 'p-05', 'bg-light');
-    // Style de la span crée //
-    span.classList.add('bg-dark', 'p-05', 'w-75');
+const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, buttonRemove, addToCartBtn) => {
 
-    count.classList.add('d-flex', 'gap-1', 'items-center', 'p-1', 'bg-light');
+    div.classList.add('d-flex', 'flex-col', 'gap-1', 'items-center', 'txt-white', 'txt-center', 'fw-bold', 'w-90', 'p-05', 'bg-light');
+
+    title.classList.add('bg-dark', 'w-100', 'pb-05', 'pt-05');
+
+    containerImg.classList.add('h-100', 'w-100');
+
+    img.classList.add('w-100', 'h-100', 'max-h-img', 'img-contain');
+
+    count.classList.add('bg-dark', 'd-flex', 'gap-1', 'items-center', 'p-1',);
+
+    buttonAdd.classList.add('bg-valid');
+    buttonRemove.classList.add('bg-valid');
+
+    addToCartBtn.classList.add('bg-valid', 'txt-white', 'fw-bold', 'txt-up', 'p-05', 'w-100')
 
 }

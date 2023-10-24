@@ -4,6 +4,25 @@ body {
     padding: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+}
+
+.pt-05 {
+    padding-top: 0.5em;
+}
+
+.pb-05 {
+    padding-bottom: 0.5em;
+}
+
 button:hover {
     background-color: #6e92b1;
     cursor: pointer;
@@ -196,6 +215,18 @@ select {
     width: 20%;
 }
 
+.object-contain {
+    object-fit: contain;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.max-h-img {
+    max-height: 20vh;
+}
+
 .w-10 {
     width: 10%;
 }
@@ -223,8 +254,9 @@ select {
 .h-50 {
     height: 50%;
 }
-.m-0{
-    margin:0;
+
+.m-0 {
+    margin: 0;
 }
 
 .h-30 {
@@ -242,9 +274,11 @@ select {
 .h-5 {
     height: 5%;
 }
+
 .vh-5 {
     height: 5vh;
 }
+
 .pr-15 {
     padding-left: 15%;
 }
