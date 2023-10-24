@@ -15,16 +15,16 @@ articleNameHtml.addEventListener('input', () => {
 
 // CODE POUR RÉCUPÉRER LA SELECTION DU MENU DÉROULANT //
 // Déclaration pour utilisation externe a l'addEventListener //
-let catName;
+let categoryName;
 // Récupère le sélecteur de categories HTML //
 const articleSelectCatHtml = document.getElementById('articleSelectCat');
 articleSelectCatHtml.addEventListener('change', () => {
 
-    console.log(`Category select is: ${catName}`);
+    console.log(`Category select is: ${categoryName}`);
 
     // /!\ Important /!\ //
     //Renvois le texte contenu dans l'option sélectionnée du select menu //
-    catName = articleSelectCatHtml.options[articleSelectCatHtml.selectedIndex].text;
+    categoryName = articleSelectCatHtml.options[articleSelectCatHtml.selectedIndex].text;
 
 });
 
@@ -38,7 +38,7 @@ articleAddBtnHtml.addEventListener('click', () => {
     console.log(article);
 
     // Ajoute au tableau article le titre récupérer et la categories sélectionné //
-    article.unshift({ title: articleName, category: catName });
+    article.unshift({ title: articleName, category: categoryName });
 
     // Appel de la fonction display//
     displayArticle();

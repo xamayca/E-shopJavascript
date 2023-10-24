@@ -28,7 +28,7 @@
             </select>
 
             <button id="articleAddBtn" type="submit"
-                class="d-flex items-center justify-center gap-1 txt-up fw-bold txt-white p-07 bg-light">
+                class="d-flex items-center justify-center gap-1 txt-up fw-bold txt-white bg-light">
                 Ajouter l'article a vendre
                 <img src="assets/img/valid-ico.svg" alt="">
             </button>
@@ -37,7 +37,14 @@
 
     </div>
     <main class="d-flex flex-col items-center">
-        <h3 class="txt-white fw-bold bg-light p-1">Liste des articles a vendre</h3>
+        <h3 class="txt-white fw-bold bg-light p-05">Liste des articles a vendre</h3>
+
+        <div class="d-flex justify-around w-50">
+            <button id="hommeFilterBtn" class="p-05 bg-dark txt-up txt-white" type="button">homme</button>
+            <button id="femmeFilterBtn" class="p-05 bg-dark txt-up txt-white" type="button">femme</button>
+            <button id="enfantFilterBtn" class="p-05 bg-dark txt-up txt-white" type="button">enfant</button>
+        </div>
+
         <div id="articleList" class="d-flex flex-col items-center gap-1 w-100">
         </div>
     </main>
