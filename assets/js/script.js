@@ -156,7 +156,7 @@ const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, butt
 
     containerImg.classList.add('h-100', 'w-100');
 
-    img.classList.add('w-100', 'h-100', 'max-h-img', 'img-contain');
+    img.classList.add('max-h-img', 'max-w-img', 'img-contain');
 
     count.classList.add('bg-dark', 'd-flex', 'gap-1', 'items-center', 'p-1',);
 

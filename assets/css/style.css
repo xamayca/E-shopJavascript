@@ -224,7 +224,11 @@ select {
 }
 
 .max-h-img {
-    max-height: 20vh;
+    max-height: 20em;
+}
+
+.max-w-img {
+    min-width: 100%;
 }
 
 .w-10 {
