@@ -84,7 +84,7 @@ const displayArticle = (filter) => {
             const articleImg = document.createElement("img");
             articleImg.src = articleImageHtml.value;
 
-            articleSpan.textContent = `Catégorie: ${article[i].category}`;
+            articleSpan.textContent = `Category: ${article[i].category}`;
             const articleCountDiv = document.createElement('div');
 
             // Ajoute le bouton + //
