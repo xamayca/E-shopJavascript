@@ -13,6 +13,9 @@ const articleAddBtnHtml = document.getElementById('articleAddBtn');
 const errorHTML = document.getElementById('error');
 // Récupère l'url du input pour ajouter une image a un article //
 const articleImageHtml = document.getElementById('articleImage');
+// Récupère le bouton pour voir le panier //
+const showMyCartHtml = document.getElementById('showMyCart');
+showMyCartHtml.addEventListener('click', () => displayCart())
 
 // Récupère les boutons de filtre par categories //
 const manFilterHTML = document.getElementById('manFilterBtn');
@@ -164,5 +167,9 @@ const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, butt
     buttonRemove.classList.add('bg-valid');
 
     addToCartBtn.classList.add('bg-valid', 'txt-white', 'fw-bold', 'txt-up', 'p-05', 'w-100')
+
+}
+
+const displayCart = () => {
 
 }
