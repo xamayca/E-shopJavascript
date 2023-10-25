@@ -215,6 +215,9 @@ select {
     width: 20%;
 }
 
+.d-initial{
+    display: block;
+}
 .object-contain {
     object-fit: contain;
 }

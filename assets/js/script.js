@@ -13,9 +13,7 @@ const articleAddBtnHtml = document.getElementById('articleAddBtn');
 const errorHTML = document.getElementById('error');
 // Récupère l'url du input pour ajouter une image a un article //
 const articleImageHtml = document.getElementById('articleImage');
-// Récupère le bouton pour voir le panier //
-const showMyCartHtml = document.getElementById('showMyCart');
-showMyCartHtml.addEventListener('click', () => displayCart())
+
 
 // Récupère les boutons de filtre par categories //
 const manFilterHTML = document.getElementById('manFilterBtn');
@@ -25,10 +23,11 @@ womanFilterHTML.addEventListener('click', () => displayArticle("Woman"));
 const childrenFilterHTML = document.getElementById('childrenFilterBtn');
 childrenFilterHTML.addEventListener('click', () => displayArticle("Children"));
 
+
 // CODE POUR AJOUTER UN ARTICLE AU CLIC DU BOUTON//
 articleAddBtnHtml.addEventListener('click', () => {
 
-    console.log('Add button is clicked');
+    console.log('Add article button is clicked');
     console.log(article);
 
     // Définit find False par défaut //
@@ -90,19 +89,22 @@ const displayArticle = (filter) => {
             articleSpan.textContent = `Category: ${article[i].category}`;
             const articleCountDiv = document.createElement('div');
 
+            let num = 0;
+
+            // Ajoute le résultat entre les boutons //
+            const howManyArticle = document.createElement('div');
+            howManyArticle.textContent = num;
+
             // Ajoute le bouton + //
             const articleAdd = document.createElement('button');
             const iconButtonAdd = document.createElement('img');
             iconButtonAdd.setAttribute('src', 'assets/img/add-ico.svg');
             // Écoute l’événement clic sur le bouton + pour ajouter //
             articleAdd.addEventListener('click', function () {
-                article[i].quantity++
-                displayArticle();
+                num++
+                howManyArticle.textContent = num;
             });
 
-            // Ajoute le résultat entre les boutons //
-            const howManyArticle = document.createElement('div');
-            howManyArticle.textContent = article[i].quantity;
 
             // Ajoute le bouton - //
             const articleRemove = document.createElement('button');
@@ -110,15 +112,18 @@ const displayArticle = (filter) => {
             iconButtonRemove.setAttribute('src', 'assets/img/remove-ico.svg');
             // Écoute l’événement clic sur le bouton - pour retirer //
             articleRemove.addEventListener('click', function () {
-                if (article[i].quantity != 0) {
-                    article[i].quantity--;
-                    displayArticle();
+                if (num != 0) {
+                    num--;
+                    howManyArticle.textContent = num;
                 }
             });
 
             // Ajoute le bouton ajouter au panier //
             const addToCartButton = document.createElement('button');
             addToCartButton.textContent = "Add to cart";
+            addToCartButton.addEventListener('click', function () {
+                article[i].quantity += num;
+            });
 
             // Attache les éléments les uns aux autres //
             articleListHtml.appendChild(articleDiv);
@@ -170,6 +175,3 @@ const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, butt
 
 }
 
-const displayCart = () => {
-
-}
