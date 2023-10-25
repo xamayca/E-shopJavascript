@@ -184,4 +184,82 @@ closeCartHtml.addEventListener('click', () => displayCart());
 
 const displayCart = () => {
     articleCartHtml.classList.toggle('d-none');
+
+    const articleCartListHtml = document.getElementById('articleCartList');
+
+
+    const articleToCart = document.createElement('div');
+    articleCartListHtml.appendChild(articleToCart);
+
+    const articleCartImg = document.createElement('img');
+    articleCartImg.src = articleImageHtml.value;
+    articleToCart.appendChild(articleCartImg);
+
+    const articleToCartContainer = document.createElement('div');
+    articleToCart.appendChild(articleToCartContainer);
+
+    const articleToCartTitle = document.createElement('h2');
+    articleToCartContainer.appendChild(articleToCartTitle);
+    articleToCartTitle.textContent = `Article: ${article.title}`;
+
+    const articleCartSpan = document.createElement('span')
+    articleToCartContainer.appendChild(articleCartSpan);
+    articleCartSpan.textContent = `Category: ${article.category}`;
+
+    const countToCartContainer = document.createElement('div');
+    articleToCartContainer.appendChild(countToCartContainer);
+
+    const articleAdd = document.createElement('button');
+    const iconButtonAdd = document.createElement('img');
+    iconButtonAdd.setAttribute('src', 'assets/img/add-ico.svg');
+    // Écoute l’événement clic sur le bouton + pour ajouter //
+    articleAdd.addEventListener('click', function () {
+        num++
+        howManyArticle.textContent = num;
+    });
+    countToCartContainer.appendChild(articleAdd);
+    articleAdd.appendChild(iconButtonAdd);
+
+    // Le compteur entre les boutons //
+    // Ajoute le résultat entre les boutons //
+    const howManyArticle = document.createElement('div');
+    howManyArticle.textContent = "0";
+    countToCartContainer.appendChild(howManyArticle);
+
+    // Ajoute le bouton - //
+    const articleRemove = document.createElement('button');
+    const iconButtonRemove = document.createElement('img');
+    iconButtonRemove.setAttribute('src', 'assets/img/remove-ico.svg');
+    // Écoute l’événement clic sur le bouton - pour retirer //
+    articleRemove.addEventListener('click', function () {
+        if (num != 0) {
+            num--;
+            howManyArticle.textContent = num;
+        }
+    });
+    countToCartContainer.appendChild(articleRemove);
+    articleRemove.appendChild(iconButtonRemove);
+
+    // Ajoute le bouton ajouter au panier //
+    const buyCartButton = document.createElement('button');
+    buyCartButton.textContent = "Buy";
+    buyCartButton.addEventListener('click', function () {
+        article[i].quantity += num;
+    });
+    articleToCartContainer.appendChild(buyCartButton);
+
+
+    addStyleToArticleCart(articleToCart, articleCartImg, articleToCartContainer, articleToCartTitle, articleCartSpan, countToCartContainer, articleAdd, articleRemove, buyCartButton)
+}
+
+const addStyleToArticleCart = (div, img, container, title, description, count, buttonAdd, buttonRemove, buy) => {
+    div.classList.add('d-flex', 'bg-dark', 'justify-around', 'items-center', 'txt-white', 'p-1', 'w-75');
+    img.classList.add('object-cover', 'w-50', 'h-100');
+    container.classList.add('d-flex', 'flex-col', 'items-center', 'gap-1');
+    title.classList.add('fs-05');
+    description.classList.add('fs-05');
+    count.classList.add('d-flex', 'justify-around', 'gap-1', 'h-100');
+    buttonAdd.classList.add('bg-valid');
+    buttonRemove.classList.add('bg-valid');
+    buy.classList.add('bg-valid', 'p-05', 'txt-white', 'fw-bold', 'w-100');
 }
