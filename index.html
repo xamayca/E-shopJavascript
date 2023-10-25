@@ -14,7 +14,7 @@
 
     <section class="d-flex flex-col p-1 gap-1 bg-dark">
 
-        <button id="showMyCart" class="d-flex items-center justify-center gap-1 p-1 bg-valid txt-up txt-white fw-bold">
+        <button id="showMyCart" class="d-flex items-center justify-center p-1 bg-valid txt-up txt-white fw-bold">
             View my shopping cart
         </button>
 
@@ -63,12 +63,20 @@
 
     </section>
 
-    <section id="articleCart" class="absolute top-0 bg-dark txt-white w-90">
-        <div class="d-flex flex-col justify-between bg-light gap-1 p-1">
-            <h3 class="txt-up">My cart</h3>
-            <span>Article you have added:</span>
-            <div id="articleCartList" class="d-flex flex-col"></div>
+    <section id="articleCart" class="absolute top-0 bg-dark txt-white w-100 h-100 d-none">
+        <div class="d-flex justify-around">
+            <div class="d-flex flex-col justify-around items-center bg-light w-90 gap-1 p-1 mt-04">
+                <button id="closeCart" class="p-1 bg-valid txt-up txt-white fw-bold w-75">
+                    Close my shopping cart
+                </button>
+                <h3 class="txt-up">My cart</h3>
+                <span>Article you have added:</span>
+                <div id="articleCartList" class="d-flex flex-col">
+
+                </div>
+            </div>
         </div>
+
     </section>
 
 

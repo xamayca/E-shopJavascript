@@ -118,7 +118,9 @@ select {
 .d-none {
     display: none;
 }
-
+.mt-04{
+    margin-top: 0.4em;
+}
 .d-flex {
     display: flex;
 }

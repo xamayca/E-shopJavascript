@@ -179,6 +179,8 @@ const articleCartHtml = document.getElementById('articleCart')
 const showMyCartHtml = document.getElementById('showMyCart');
 showMyCartHtml.addEventListener('click', () => displayCart());
 
+const closeCartHtml = document.getElementById('closeCart');
+closeCartHtml.addEventListener('click', () => displayCart());
 
 const displayCart = () => {
     articleCartHtml.classList.toggle('d-none');
