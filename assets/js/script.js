@@ -174,13 +174,12 @@ const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, butt
     addToCartBtn.classList.add('bg-valid', 'txt-white', 'fw-bold', 'txt-up', 'p-05', 'w-100')
 
 }
-
+const articleCartHtml = document.getElementById('articleCart')
 // Récupère le bouton pour voir le panier //
 const showMyCartHtml = document.getElementById('showMyCart');
 showMyCartHtml.addEventListener('click', () => displayCart());
-const articleCartHtml = document.getElementById('articleCart')
+
 
 const displayCart = () => {
-    articleCartHtml.classList.remove('d-none');
-    articleCartHtml.classList.add('d-initial');
+    articleCartHtml.classList.toggle('d-none');
 }
