@@ -175,3 +175,12 @@ const addStyleToArticle = (div, title, containerImg, img, count, buttonAdd, butt
 
 }
 
+// Récupère le bouton pour voir le panier //
+const showMyCartHtml = document.getElementById('showMyCart');
+showMyCartHtml.addEventListener('click', () => displayCart());
+const articleCartHtml = document.getElementById('articleCart')
+
+const displayCart = () => {
+    articleCartHtml.classList.remove('d-none');
+    articleCartHtml.classList.add('d-initial');
+}
